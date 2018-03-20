@@ -27,7 +27,8 @@ endif
 CFLAGS+=-std=c99
 
 ifeq ($(UNAME), Linux)
-  LDFLAGS=
+  LDFLAGS=-static
+
 endif
 ifeq ($(UNAME), Darwin)
   #LDFLAGS+=-L/opt/X11/lib
@@ -43,7 +44,7 @@ ifdef MINGW
   EXE=vic2d.exe
   LDFLAGS+=-static
 endif
-LDFLAGS+=-lm -lgfortran -lpng -lz
+LDFLAGS+=-lgfortran -lpng -lm -lz
 
 # build targets
 all: $(EXE)
@@ -82,4 +83,3 @@ vic3d: libvicmoc3d.a inout.o vic3d.o vicmoc.h Makefile
 
 clean :
 	rm -f *.o *.a gmon* a.out
-
